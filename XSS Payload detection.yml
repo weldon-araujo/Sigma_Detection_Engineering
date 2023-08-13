@@ -1,0 +1,32 @@
+title: XSS Payload detection
+description: Detect possible payloads of threat XSS in methods HTTP.
+status: Experimental
+author: A.W. Networksecure Segurança da Informação LTDA.
+references:
+    - https://sidechannel.blog/desvendando-o-sigma-yaml-para-engenharia-de-deteccao/
+date: 2023/07/31
+modified: 2023/07/31
+tags:
+    - attack web application
+    - XSS Attack
+logsource:
+    Product:
+        - Web Application Firewall
+        - IPS/IDS
+        - Apache
+        - IIs
+        - Web Servers
+    category: Threats
+detection:
+    condition: 
+        selection: 
+            http_method:
+                - GET
+                - POST
+            url_contains:        
+            referense_set: XSS_Payloads
+    Condition: and, or 
+fields:
+    - Http Method
+    - Url path 
+level: high

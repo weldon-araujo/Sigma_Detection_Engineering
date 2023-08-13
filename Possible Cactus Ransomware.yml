@@ -1,0 +1,33 @@
+title: Possible Cactus Ransomware
+description: Detect possible attack of cactus Ransomware.
+status: experimental
+author: A.W. Networksecure Segurança da Informação LTDA.
+references:
+    - https://www.kroll.com/en/insights/publications/cyber/cactus-ransomware-prickly-new-variant-evades-detection
+date: 2023-08-09
+modified: 2023-08-09
+tags:
+    - attack.T1021.004 SSH
+    - attack.T1053.005 Scheduled Task
+    - attack.T1049 System Network Connections Discovery
+    - attack.T1087 Account Discovery
+logsource:
+    product: windows
+    category: security
+detection:
+    selection:
+        commandLine|contains:
+          - Install.bat # Script que gera as chaves de ssh para realizacom comunicação com C2
+          - TASKKILL /F /IM msiexec.exe # um outro script executa esse comando afim de desatiuvar o AV
+          - Get-ADComputer -Filter * -Properties * | select ipv4Address > ips.txt
+          - Get-ADUser - Filter * -Properties * > users.txt
+          - Get-Eventlog -LogName Security -InstanceID 4624 | Sort-Object -Property
+        folloowing Rule: Data Exfiltration
+        registry key:
+          - "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
+          - "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" 
+          - "HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce" 
+fields:
+  - CommandLine
+  - TargetObject
+level: high

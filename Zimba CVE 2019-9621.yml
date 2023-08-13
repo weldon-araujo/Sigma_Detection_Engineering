@@ -1,0 +1,33 @@
+title: Zimbra Vulnerability SSRF/XXE CVE 2019-9621
+status: experimental
+author: A.W. Networksecure Segurança da Informação LTDA.
+date: 2023/08/10
+description: Possible Exploit vulnerability CVE 2019-9621 through puyblic exploit 
+references:
+  - https://www.exploit-db.com/exploits/46967
+tags:
+  - attack
+logsource:
+  category: 
+    - IPS/IDS
+    - web application firewall
+  product: linux
+detection:
+  selection:
+    http_method:
+      - GET
+      - POST
+    url_request: k8gege.github.io/zimbra.dtd
+    url_request_post: 
+      - '<!ENTITY % dtd SYSTEM "{dtd}">
+        %dtd;
+        %all;
+        ]>' 
+    url_contains: '/Autodiscover/Autodiscover.xml'
+  condition: selection and or
+fields:
+  - url
+  - commandLine
+  - parentCommandLine
+  - http_method
+level: medium
