@@ -1,0 +1,25 @@
+title: Over Pass The Hash
+description: Detect possible attack of Over Pass The Hash.
+status: produçao
+author: A.W. Networksecure Segurança da Informação LTDA.
+references:
+    - https://www.alteredsecurity.com/post/a-primer-on-dcsync-attack-and-detection
+    - https://attack.mitre.org/techniques/T1550/002/
+date: 2023-08-16
+modified: 2023-08-16
+tags:
+    - Over Pass Tha Hase
+    - Attack.T1550/002/
+logsource:
+    product: windows
+    category: security
+detection:
+    selection:
+        eventid: 4624
+        logon_type: 9
+        logon_process: seclogo
+fields:
+    - EventID
+    - Logon Process
+    - Logon Process
+level: medium

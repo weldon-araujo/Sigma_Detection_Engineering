@@ -5,22 +5,23 @@ author: A.W. Networksecure Segurança da Informação LTDA.
 references:
     - https://www.alteredsecurity.com/post/a-primer-on-dcsync-attack-and-detection
 date: 2023-08-04
-modified: 2023-08-07
+modified: 2023-08-17
 tags:
     - Active Directory
     - Dsync Attack
+    - attack.DS0026
 logsource:
     product: windows
     category: security
 detection:
     selection:
-        eventid: 4688
-        AQL: Find-InterestingDomainAcl \| \?\{\$\_.IdentityReferenceName -eq '[^\']*'\} or (Invoke-Mimkatz\s+-Command\s+.*)
-        object_propriets: "1131f6aa-9c07-11d1-f79f-00c04fc2dcd2" or "1131f6ad-9c07-11d1-f79f-00c04fc2dcd2" or "89e95b76-444d-4c62-991a-0facbeda640c"
-        user: krbtgt 
+        eventid: 4662
+        object_propriets: 
+            - "1131f6aa-9c07-11d1-f79f-00c04fc2dcd2"
+            - "1131f6ad-9c07-11d1-f79f-00c04fc2dcd2" 
+            - "89e95b76-444d-4c62-991a-0facbeda640c"
+    Condition: or
 fields:
-  - Log source
-  - EventID
-  - TargetUserName
-  - TargetUserSid
+    - eventID
+    - Properties
 level: high
