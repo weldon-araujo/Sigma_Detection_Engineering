@@ -1,0 +1,25 @@
+title: Possible WEBDAV attack
+status: experimental
+author: A.W. Networksecure Segurança da Informação LTDA.
+date: 2023/08/24
+description: This rule triger when in URL was seen extensions used in webshells as asp, aspx, php, exe 
+references:
+  - https://vk9-sec.com/exploiting-webdav/
+tags:
+  - webdav
+  - attack.T1187
+logsource:
+  category: Alert
+  product:
+    - waf
+    - IPS
+    - IDS
+detection:
+  selection:
+    httpMethod: WEBDAV
+    url: url=\/[ç\-0-9a-zA-Z\/\.]+\.(cfm|cgi|jsp|php|asp|aspx|pl|)
+  condition: 
+fields:
+  - httpMethod
+  - url
+level: medium

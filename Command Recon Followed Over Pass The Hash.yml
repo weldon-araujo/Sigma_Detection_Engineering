@@ -1,0 +1,32 @@
+title: Command Recon Followed Over Pass The Hash 
+description: Detect possible attack of command for recon process as net group / net use followed Over Pass The Hash.
+status: experimental
+author: A.W. Networksecure Segurança da Informação LTDA.
+references:
+    - https://www.alteredsecurity.com/post/a-primer-on-dcsync-attack-and-detection
+    - https://attack.mitre.org/techniques/T1550/002/
+    - https://attack.mitre.org/techniques/T1069/002/
+date: 2023-08-21
+modified: 2023-08-21
+tags:
+    - Over Pass Tha Hase
+    - Attack.T1550/002/
+    - attack.T1069/002
+logsource:
+    product: windows
+    category: 
+        - security
+        - sysmon
+detection:
+    selection:
+        eventid: 
+            - 1
+            - 4624
+        command: net group "Domain Admins" /dom
+        logon_type: 9
+        logon_process: seclogo
+fields:
+    - EventID
+    - CommandLine
+    - Logon Process
+level: medium
