@@ -1,0 +1,23 @@
+title: Git Exposed
+status: experimental
+author: A.W. Networksecure Segurança da Informação LTDA.
+date: 2023/08/25
+description: Whe in url contain address .git exposed possible atack of git exposed
+references:
+  - https://pingback.com/naaperes/git-git-exposed-e-resolucao-da-maquina-git-happens-da-tryhackme
+tags:
+  - git exposed
+  - attack.T1213/003
+logsource:
+  category: 
+    - IPS
+    - IDS
+    - web application firewall
+detection:
+  selection:
+    httpMethod: GET
+    url: url=.(\.git\/config|\.git\/HEAD|.git)
+fields:
+  - httpMethod
+  - url
+level: crítico

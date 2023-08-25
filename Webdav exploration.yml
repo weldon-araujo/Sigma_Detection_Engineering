@@ -17,7 +17,7 @@ logsource:
 detection:
   selection:
     httpMethod: WEBDAV
-    url: url=\/[ç\-0-9a-zA-Z\/\.]+\.(cfm|cgi|jsp|php|asp|aspx|pl|)
+    url: url=\/[ç\-0-9a-zA-Z\/\.]+\.(cfm|cgi|jsp|php|asp|aspx|pl|html)
   condition: 
 fields:
   - httpMethod
