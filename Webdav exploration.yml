@@ -1,5 +1,5 @@
-title: Possible WEBDAV attack
-status: experimental
+title: Possible WEBDAV Attack
+status: produção
 author: A.W. Networksecure Segurança da Informação LTDA.
 date: 2023/08/24
 description: This rule triger when in URL was seen extensions used in webshells as asp, aspx, php, exe 
@@ -16,10 +16,18 @@ logsource:
     - IDS
 detection:
   selection:
-    httpMethod: WEBDAV
-    url: url=\/[ç\-0-9a-zA-Z\/\.]+\.(cfm|cgi|jsp|php|asp|aspx|pl|html)
+    httpMethod: 
+      - WEBDAV
+      - PUT
+    url: url=([^ ]+\.(cfm|cgi|jsp|php|asp|aspx|pl|html|shtml|jhml))(?=(\s|\/)+httpMethod|$)
   condition: 
 fields:
   - httpMethod
   - url
+falsepositives:
+  - admin_local.bat
+  - TCE_Zimbra.bat
+  - list_admin_local.bat
+  - bginfo.vbs
+  - bginfo.exe
 level: medium
