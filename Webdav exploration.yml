@@ -19,7 +19,17 @@ detection:
     httpMethod: 
       - WEBDAV
       - PUT
-    url: url=([^ ]+\.(cfm|cgi|jsp|php|asp|aspx|pl|html|shtml|jhml))(?=(\s|\/)+httpMethod|$)
+    url: 
+      - cfm
+      - cgi
+      - jsp
+      - php
+      - asp
+      - aspx
+      - html
+      - shtml
+      - jhml
+      - pl
   condition: 
 fields:
   - httpMethod

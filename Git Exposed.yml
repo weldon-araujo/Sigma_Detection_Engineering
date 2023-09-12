@@ -16,7 +16,14 @@ logsource:
 detection:
   selection:
     httpMethod: GET
-    url: .+?((\.git|\.git\/HEAD|\.git\/objects|\.git\/config|\.git\/logs\/HEAD|\.gitignore)$)
+    url: 
+      - .git
+      - .gitignore
+      - .git/HEAD
+      - git/objects
+      - git/config
+      - git/logs/HEAD
+
 fields:
   - httpMethod
   - url

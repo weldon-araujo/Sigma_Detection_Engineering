@@ -1,4 +1,4 @@
-title: XSS Payload detection
+title: XSS Payload detection in Uri
 description: Detect possible payloads of threat XSS in methods HTTP.
 status: Experimental
 author: A.W. Networksecure Segurança da Informação LTDA.
@@ -20,13 +20,18 @@ logsource:
 detection:
     condition: 
         selection: 
-            http_method:
-                - GET
-                - POST
-            url_contains:        
-            referense_set: XSS_Payloads
+            http_method: GET
+            url:
+                - '><script>'
+                - '<script'
+                - '<SCRIPT'                
+                - '<sCrIpT'
+                - '/script>'
+                - '<IMG SRC'                     
     Condition: and, or 
 fields:
     - Http Method
     - Url path 
-level: high
+level: medium
+
+

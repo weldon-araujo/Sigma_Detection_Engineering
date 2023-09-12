@@ -1,6 +1,6 @@
 title: Possible Cactus Ransomware
 description: Detect possible attack of cactus Ransomware.
-status: experimental
+status: produção
 author: A.W. Networksecure Segurança da Informação LTDA.
 references:
     - https://www.kroll.com/en/insights/publications/cyber/cactus-ransomware-prickly-new-variant-evades-detection

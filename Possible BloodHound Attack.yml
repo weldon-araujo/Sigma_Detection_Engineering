@@ -1,0 +1,39 @@
+title: Possible BloodHound Attack
+status: experimental
+author: A.W. Networksecure Segurança da Informação LTDA.
+date: 2023/09/08
+description: Possible attack through tool bloodhound. 
+references:
+  - https://bloodhound.readthedocs.io/en/latest/
+  - https://www.pentestpartners.com/security-blog/bloodhound-walkthrough-a-tool-for-many-tradecrafts/
+  - https://www.100security.com.br/bloodhound  
+  - https://www.linkedin.com/pulse/detectando-ferramenta-bloodhound-sharphound-threat-hunting-santos/?originalSubdomain=pt
+tags:
+  - tool hacking
+  - attack.S0521
+logsource:
+    product: windows
+    category: security
+detection:
+  selection:
+    eventID: 5145
+    Target Name:
+      - srvsvc
+      - lsarpc
+      - samr
+  filter:
+  condition: 
+    - not account_name_contains_dollar
+    - Contain Relative Target Names in 1 min interval
+    - With at least 3 occurrences of the same Account Name, source address and source port in 1 min 
+    - or 
+    - and 
+fields:
+  - eventID
+  - Account Name
+  - Target Name
+  - Source Address
+  - Source Port
+falsepositives:
+  - System administrator Usage
+level: medium
