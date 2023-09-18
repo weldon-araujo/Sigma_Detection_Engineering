@@ -1,4 +1,4 @@
-title: XSS Payload detection in Uri
+title: XSS Payload Detection in URI
 description: Detect possible payloads of threat XSS in methods HTTP.
 status: Experimental
 author: A.W. Networksecure Segurança da Informação LTDA.
@@ -27,7 +27,11 @@ detection:
                 - '<SCRIPT'                
                 - '<sCrIpT'
                 - '/script>'
-                - '<IMG SRC'                     
+                - '<IMG SRC'
+                - '<image'    
+                - '<audio'
+                - '<video' 
+                - '<object'                
     Condition: and, or 
 fields:
     - Http Method

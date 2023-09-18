@@ -1,0 +1,24 @@
+title: SharpHound Execution
+status: produção
+author: A.W. Networksecure Segurança da Informação LTDA.
+date: 2023/09/2023
+description: Execution of executable of bin SharpHound.exe or script powershell SharpHound.ps1. 
+references:
+  - https://bloodhound.readthedocs.io/en/latest/
+  - https://www.pentestpartners.com/security-blog/bloodhound-walkthrough-a-tool-for-many-tradecrafts/
+  - https://www.100security.com.br/bloodhound  
+tags:
+  - tool hacking
+  - attack.S0521
+logsource:
+    product: windows
+    category: security
+detection:
+  selection:
+    commandline:
+      - Import-Module .\SharpHound.ps1
+      - SharpHound.exe
+      - invoke-bloodhound
+fields:
+  - commandline
+level: medium 
